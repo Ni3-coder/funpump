@@ -38,8 +38,6 @@ h2 {
   grid-template-columns: repeat(12, 1fr);
 }
 
-/* HEADER STYLES */
-
 header {
   grid-column: 2 / 12;
 
@@ -55,8 +53,6 @@ header .brand {
   font-size: 2rem;
   transform: rotate(-5deg);
 }
-
-/* BUTTON STYLES */
 
 .btn--fancy,
 input[type="submit"] {
@@ -84,8 +80,6 @@ input[type="submit"]:hover {
   transform: scale(1.2);
 }
 
-/* MAIN LAYOUT */
-
 main {
   grid-column: 2 / 12;
 
@@ -100,8 +94,6 @@ main .create {
   place-content: center;
   min-height: 30svh;
 }
-
-/* DISPLAY TOKEN LISTINGS */
 
 main .listings {
   grid-column: 1 / 13;
@@ -185,8 +177,6 @@ main .listings h1 {
   font-size: 1.40rem;
 }
 
-/* CREATE TOKEN FORM */
-
 .list {
   width: 100vw;
   height: 100vh;
@@ -230,7 +220,6 @@ main .listings h1 {
   border-radius: 6px;
 }
 
-/* TRADE TOKENS */
 .trade {
   width: 100vw;
   height: 100vh;
