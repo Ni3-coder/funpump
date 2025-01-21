@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.27;
 
-import { Token } from "./Token.sol";
+import {Token} from "./Token.sol";
 
 contract Factory {
     uint256 public constant TARGET = 3 ether;
@@ -30,11 +30,13 @@ contract Factory {
         owner = msg.sender;
     }
 
-    function getTokenSale(uint256 _index) public view returns (TokenSale memory) {
+    function getTokenSale(
+        uint256 _index
+    ) public view returns (TokenSale memory) {
         return tokenToSale[tokens[_index]];
     }
 
-    function getCost(uint256 _sold) public pure returns(uint256) {
+    function getCost(uint256 _sold) public pure returns (uint256) {
         uint256 floor = 0.0001 ether;
         uint256 step = 0.0001 ether;
         uint256 increment = 10000 ether;
@@ -43,7 +45,10 @@ contract Factory {
         return cost;
     }
 
-    function create(string memory _name, string memory _symbol) external payable {
+    function create(
+        string memory _name,
+        string memory _symbol
+    ) external payable {
         require(msg.value >= fee, "Factory: Creator fee not met");
 
         Token token = new Token(msg.sender, _name, _symbol, 1_000_000 ether);
@@ -82,9 +87,8 @@ contract Factory {
         sale.sold += _amount;
         sale.raised += price;
 
-        if(sale.sold >= TOKEN_LIMIT || sale.raised >= TARGET) {
+        if (sale.sold >= TOKEN_LIMIT || sale.raised >= TARGET) {
             sale.isOpen = false;
-
         }
 
         Token(_token).transfer(msg.sender, _amount);
@@ -111,4 +115,3 @@ contract Factory {
         require(success, "Factory: ETH transfer failed");
     }
 }
- 

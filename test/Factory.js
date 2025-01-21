@@ -44,23 +44,23 @@ describe("Factory", function () {
     })
 
     describe("Creating", function () {
-        it("Should set the owner", async function() {
+        it("Should set the owner", async function () {
             const { factory, token } = await loadFixture(deployFactoryFixture)
             expect(await token.owner()).to.equal(await factory.getAddress())
         })
 
-        it("Should set the creator", async function() {
+        it("Should set the creator", async function () {
             const { token, creator } = await loadFixture(deployFactoryFixture)
             expect(await token.creator()).to.equal(creator.address)
         })
 
-        it("Should set the supply", async function() {
+        it("Should set the supply", async function () {
             const { factory, token } = await loadFixture(deployFactoryFixture)
             const totalSupply = ethers.parseUnits("1000000", 18)
             expect(await token.balanceOf(await factory.getAddress())).to.equal(totalSupply)
         })
 
-        it("Should update ETH balance", async function() {
+        it("Should update ETH balance", async function () {
             const { factory } = await loadFixture(deployFactoryFixture)
             const balance = await ethers.provider.getBalance(await factory.getAddress())
             expect(balance).to.equal(FEE)
@@ -71,12 +71,12 @@ describe("Factory", function () {
             const count = await factory.totalTokens()
             expect(count).to.equal(1)
             const sale = await factory.getTokenSale(0)
-            
+
             expect(sale.token).to.equal(await token.getAddress())
             expect(sale.creator).to.equal(creator.address)
             expect(sale.sold).to.equal(0)
             expect(sale.raised).to.equal(0)
-            expect(sale.isOpen ).to.equal(true)
+            expect(sale.isOpen).to.equal(true)
         })
     })
 
@@ -99,7 +99,7 @@ describe("Factory", function () {
         it("Should update token sale", async function () {
             const { factory, token } = await loadFixture(buyTokenFixture)
             const sale = await factory.tokenToSale(await token.getAddress())
-        
+
             expect(sale.sold).to.equal(AMOUNT)
             expect(sale.raised).to.equal(COST)
             expect(sale.isOpen).to.equal(true)
